@@ -34,7 +34,7 @@ public class funciones {
                 cuadradoMagico();
                 break;
             case 21:
-                
+                ej21();
                 break;
             default:
                 System.out.println("La opcion ingresa es incorrecta.");
@@ -311,40 +311,111 @@ public class funciones {
         {24, 67, 97, 46, 87, 13, 67, 89, 93, 24}, {21, 68, 78, 98, 90, 67, 12, 41, 65, 12}};
         int[][] mini = {{36,5,67},{89,90,75},{14,22,26}};
         
-        String posicion = ""; // voy a guardar la primer posición donde empieza la matriz pequeña
+        String[] posicion = new String[9]; // voy a guardar la primer posición donde empieza la matriz pequeña
+        boolean esta = false; // pa saber si continuamos o no buscando la mini matriz
+        int count = 0; // para contar la posicion donde ponemos el indice en el vector
         
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 3; j++) {
-                
-                if (matriz[i][j] == mini[i][j]) {
-                    // seguir buscando matriz
-                } else {
-                    
+        
+        for (int l = 0; l < 3; l++) {
+            for (int m = 0; m < 3; m++) {
+
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+
+                        if (matriz[i][j] == mini[l][m]) {
+                            // seguir buscando la matriz peque
+                            // agregamos la posicion en el vector
+                            // poneoms en verdadero q esta la matriz, y sumamos 1 al contador
+                            posicion[count] = "[" + i + ", " + j + "] ";
+                            esta = true;
+                            count += 1;
+
+                        } else {
+                            // si no son el mismo elemento ponemos en false el boolean y 
+                            // ponemos en 0 el contador de posiciones para el vector.
+                            // entonces en el proximo ciclo del for
+                            esta = false;
+                            count = 0;
+                        }
+                    }
                 }
-                
-                
-                
-                
+            }
+        }
+        if (esta == true && count == 9) {
+            System.out.println("La matriz pequeña se encuentra dentro de la principal.");
+            System.out.println("Las posiciones en donde se encuentra dicha matriz es: ");
+            for (int k = 0; k < 9; k++) {
+                System.out.print(posicion[k]);
             }
         }
         
-        
-        int count = 0; // va a ser el j
+        /*
+        int algo = 0; // va a ser el j
         boolean es = true;
-        for (int i = 0; i < 10; i++) {
-            
-            do {
-                
-                
+        for (int i = 0; i < 10; i++) {  
+            do {         
             } while (count < 3 && es == true);
-            
-            
-            
-            
         }
-        
+        */
         
     }
+  
+    public static void main21() {
+        int[][] M = {
+            {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+            {11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
+            {21, 22, 23, 24, 25, 26, 27, 28, 29, 30},
+            {31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
+            {41, 42, 43, 44, 45, 46, 47, 48, 49, 50},
+            {51, 52, 53, 54, 55, 56, 57, 58, 59, 60},
+            {61, 62, 63, 64, 65, 66, 67, 68, 69, 70},
+            {71, 72, 73, 74, 75, 76, 77, 78, 79, 80},
+            {81, 82, 83, 84, 85, 86, 87, 88, 89, 90},
+            {91, 92, 93, 94, 95, 96, 97, 98, 99, 100}
+        };
+
+        int[][] P = {
+            {23, 24, 25},
+            {33, 34, 35},
+            {43, 44, 45}
+        };
+
+        boolean found = false;
+        int row = -1;
+        int column = -1;
+
+        for (int i = 0; i <= M.length - P.length; i++) {
+            for (int j = 0; j <= M[0].length - P[0].length; j++) {
+                if (isSubmatrixMatch(M, P, i, j)) {
+                    found = true;
+                    row = i;
+                    column = j;
+                    break;
+                }
+            }
+            if (found) {
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("La submatriz P se encuentra en la fila " + row + " y columna " + column + " de la matriz M.");
+        } else {
+            System.out.println("La submatriz P no se encuentra en la matriz M.");
+        }
+    }
+
+    private static boolean isSubmatrixMatch(int[][] M, int[][] P, int startRow, int startCol) {
+        for (int i = 0; i < P.length; i++) {
+            for (int j = 0; j < P[0].length; j++) {
+                if (M[startRow + i][startCol + j] != P[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     
     
     
