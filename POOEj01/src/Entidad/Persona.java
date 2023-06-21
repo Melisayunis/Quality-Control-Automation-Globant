@@ -8,9 +8,9 @@ package Entidad;
 public class Persona {
 
     // atributos: van al principio de la clase
-    public String nombre;
-    public String apellido;
-    public int edad;
+    private String nombre;
+    private String apellido;
+    private int edad;
 
     // constructores
         public Persona() {
@@ -43,8 +43,18 @@ public class Persona {
         return edad;
     }
 
+    /**
+     * 
+     * @param edad 
+     */
     public void setEdad(int edad) {
         this.edad = edad;
     }
 
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + '}';
+    }
+
+    
 }
