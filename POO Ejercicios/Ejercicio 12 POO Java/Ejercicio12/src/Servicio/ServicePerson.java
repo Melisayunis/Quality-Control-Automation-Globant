@@ -7,7 +7,7 @@ package Servicio;
 
 import Entidad.Person;
 import java.util.Scanner;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
 Y los siguientes métodos:
@@ -56,7 +56,8 @@ public class ServicePerson {
         System.out.println("Año:");
         anio = leer.nextInt();
         
-        Date birthDay = new Date(anio, mes, dia);
+        
+        LocalDate birthDay = LocalDate.of(anio, mes, dia);
         Person people = new Person(name, birthDay);
         
         return people;
@@ -85,21 +86,21 @@ public class ServicePerson {
             en cuenta que para conocer la edad de la persona también se debe conocer la fecha
             actual.
         */
-        Date now = new Date(); // fecha actual
+        LocalDate now = LocalDate.now(); // fecha actual
         
-        // getYear()
-        Date fecha = people.getBirthDate();
+        LocalDate fecha = people.getBirthDate();
+        
         int edad;
         
-        if (now.getMonth() > fecha.getMonth()) {
+        if (now.getMonthValue() > fecha.getMonthValue()) {
             // ya cumplio años
             edad = now.getYear() + 1900 - fecha.getYear();
-        } else if (now.getMonth() == fecha.getMonth() && now.getDate() >= fecha.getDate()) {
+        } else if (now.getMonth() == fecha.getMonth() && now.getDayOfMonth() >= fecha.getDayOfMonth()) {
             // ya cumplio años
-            edad = now.getYear() + 1900 - fecha.getYear();
+            edad = now.getYear() - fecha.getYear();
         } else {
             // no cumplio años todavia
-            edad = now.getYear() + 1900 - fecha.getYear() - 1;
+            edad = now.getYear() - fecha.getYear() - 1;
         }
 
         return edad;        
@@ -127,8 +128,8 @@ public class ServicePerson {
         */
         System.out.println("   -> El nombre de la persona es: " + people.getName());
         System.out.print("   -> La fecha de nacimiento de la perosna es: " );
-        System.out.print(people.getBirthDate().getDate() + "/");
-        System.out.print(people.getBirthDate().getMonth() + "/");
+        System.out.print(people.getBirthDate().getDayOfMonth() + "/");
+        System.out.print(people.getBirthDate().getMonthValue() + "/");
         System.out.println(people.getBirthDate().getYear());
     }
 }

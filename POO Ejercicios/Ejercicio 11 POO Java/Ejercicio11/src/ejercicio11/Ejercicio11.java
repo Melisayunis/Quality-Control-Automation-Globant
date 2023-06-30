@@ -6,7 +6,7 @@
 package ejercicio11;
 
 import java.util.Scanner;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
 Pongamos de lado un momento el concepto de POO, ahora vamos a trabajar solo con la
@@ -34,20 +34,18 @@ public class Ejercicio11 {
         System.out.println("Por ultimo ingrese los 4 numeros del año: ");
         int anio = leer.nextInt();
         
-        // Date(int dia, int mes, int año)
-        Date fecha = new Date(anio, mes, dia);
-        Date fechaActual = new Date();
-
-        // Para mostrar getDate() / getMonth() / getYear()
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fecha = LocalDate.of(anio, mes, dia);
+        
         System.out.println("La fecha ingresada es: ");
-        System.out.println("Dia: " + fecha.getDate());
-        System.out.println("Mes: " + fecha.getMonth());
+        System.out.println("Dia: " + fecha.getDayOfMonth());
+        System.out.println("Mes: " + fecha.getMonthValue());
         System.out.println("Año: " + fecha.getYear());
         
         System.out.println(" " + fechaActual.getYear());
         // Años entre esa fecha y la actual
         System.out.println("Entre la fecha ingresada y la actual han pasado: ");
-        System.out.println(" " +  (fechaActual.getYear() + 1900 - fecha.getYear()) + " años.");
+        System.out.println(" " +  (fechaActual.getYear() - fecha.getYear()) + " años.");
     }
     
 }

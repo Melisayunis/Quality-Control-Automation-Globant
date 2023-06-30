@@ -5,7 +5,7 @@
  */
 package Entidad;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
 Implemente la clase Persona. Una persona tiene un nombre y una fecha de nacimiento
@@ -13,12 +13,12 @@ Implemente la clase Persona. Una persona tiene un nombre y una fecha de nacimien
  */
 public class Person {
     private String name;
-    private Date birthDate;
+    private LocalDate birthDate;
 
     public Person() {
     }
 
-    public Person(String name, Date birthDate) {
+    public Person(String name, LocalDate birthDate) {
         this.name = name;
         this.birthDate = birthDate;
     }
@@ -31,11 +31,11 @@ public class Person {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
     
