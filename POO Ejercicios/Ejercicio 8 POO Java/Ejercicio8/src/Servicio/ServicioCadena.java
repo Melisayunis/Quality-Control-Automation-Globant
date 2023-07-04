@@ -7,7 +7,6 @@ package Servicio;
 
 import Entidad.Cadena;
 import java.util.Scanner;
-import java.lang.String;
 
 /**
 a) Método mostrarVocales(), deberá contabilizar la cantidad de vocales que tiene la
@@ -26,17 +25,18 @@ encuentren en la frase, por algún otro carácter seleccionado por el usuario y 
 la frase resultante.
 h) Método contiene(String letra), deberá comprobar si la frase contiene una letra que
 ingresa el usuario y devuelve verdadero si la contiene y falso si no.
- */
+*  */
 public class ServicioCadena {
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
     
+    /* No lo usamos porq creamos el objeto con contructores no conn metodos
     public Cadena crearCadena() {
-        System.out.println("Ingrese una frase: ");
+        System.out.println("Ingrese una palabra o frase: ");
         String frase = leer.next();
         
         Cadena chain = new Cadena(frase, frase.length());
         return chain;
-    }
+    } */
     
     public int mostrarVocales(Cadena chain){
         /*
@@ -68,10 +68,10 @@ public class ServicioCadena {
         */
         String reverse = "";
         
-        for (int i = chain.getLenght()-1; i == 0; i--){
-            reverse = reverse.concat(chain.getFrase().substring(i, i));
+        for (int i = 0; i < chain.getLenght(); i++){
+            reverse = reverse.concat(chain.getFrase().substring(chain.getLenght()-i-1, chain.getLenght()-i));
         }
-        System.out.println("La frase es: ");
+        System.out.println("La frase original es: ");
         System.out.println("    -> " + chain.getFrase());
         System.out.println("La frase invertida es: ");
         System.out.println("    -> " + reverse);
@@ -92,23 +92,24 @@ public class ServicioCadena {
                 repeat += 1;
             }
         }
-        System.out.println("El caracter '" + letra + "' se repite " + repeat + " veces.");
+        System.out.println("El caracter -" + letra + "- se repite " + repeat + " veces.");
     }
     
-    public boolean compararLongitud(Cadena chain){
+    public void compararLongitud(Cadena chain){
         /*
         e) Método compararLongitud(String frase), deberá comparar la longitud de la frase que
             compone la clase con otra nueva frase ingresada por el usuario.
         */
-        boolean equal = false;
         System.out.println("Ingrese una frase para comparar la longitud: ");
         String frase = leer.next();
         
         if (chain.getLenght() == frase.length()) {
-            equal = true;
+            System.out.println("    * Las longitudes son iguales.");
+        } else if (chain.getLenght() > frase.length()) {
+            System.out.println("    * La longitud de la frase inicial es mayor.");
+        } else if (chain.getLenght() < frase.length()) {
+            System.out.println("    * La longitud de la frase inicial es menor.");
         }
-        
-        return equal;
     }
     
     public void unirFrases(Cadena chain) {
@@ -117,34 +118,31 @@ public class ServicioCadena {
             con una nueva frase ingresada por el usuario y mostrar la frase resultante.
         */
         System.out.println("Ingrese una frase nueva: ");
-        String frase = leer.next();
+        String frase = " " + leer.next();
 
         System.out.println("    -> Las frases unidas son: " + chain.getFrase().concat(frase));  
     }
     
-    public String reemplazar(Cadena chain) {
+    public void reemplazar(Cadena chain) {
         /*
         g) Método reemplazar(String letra), deberá reemplazar todas las letras “a” que se
             encuentren en la frase, por algún otro carácter seleccionado por el usuario y mostrar
             la frase resultante.
         */
         // usar:   replace(char oldChar, char newChar)
-        
         System.out.println("Ingrese la letra que desea que sea reemplazada por 'a': ");
         char letra = leer.next().charAt(0);
         
-        String newChain = chain.getFrase().replace(letra, 'a');
+        String newChain = chain.getFrase().replace('a', letra);
         
-        return newChain;
+        System.out.println("La frase resultante es: " + newChain);
     }
     
-    public boolean contiene(Cadena chain) {
+    public void contiene(Cadena chain) {
         /*
         h) Método contiene(String letra), deberá comprobar si la frase contiene una letra que
             ingresa el usuario y devuelve verdadero si la contiene y falso si no.
         */
-         boolean isHere = false;
-        
         System.out.println("Ingrese una letra, para verificar si se encuentra en la frase: ");
         char letra = leer.next().charAt(0);
         
@@ -153,16 +151,13 @@ public class ServicioCadena {
             // contains(CharSequence s)
             // isHere = chain.getFrase().contains(letra);
         // --------------------------------------
-       
         
         for (int i = 0; i < chain.getLenght(); i++) {
             if (chain.getFrase().charAt(i) == letra) {
-                isHere = true;
+                System.out.println("La letra -" + letra + "- se encuentra en la frase en la posición " + i);
                 break;
             }
         }
-        
-        return isHere;
     }
     
     
