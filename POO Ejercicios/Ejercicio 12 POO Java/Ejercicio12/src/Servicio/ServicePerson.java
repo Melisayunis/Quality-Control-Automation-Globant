@@ -94,7 +94,7 @@ public class ServicePerson {
         
         if (now.getMonthValue() > fecha.getMonthValue()) {
             // ya cumplio años
-            edad = now.getYear() + 1900 - fecha.getYear();
+            edad = now.getYear() - fecha.getYear();
         } else if (now.getMonth() == fecha.getMonth() && now.getDayOfMonth() >= fecha.getDayOfMonth()) {
             // ya cumplio años
             edad = now.getYear() - fecha.getYear();
