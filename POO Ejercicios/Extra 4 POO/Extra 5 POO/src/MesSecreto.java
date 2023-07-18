@@ -39,6 +39,7 @@ public class MesSecreto {
                 monthUser = read.nextLine().toLowerCase();
             }
         } while (exit);
+        System.out.flush();
     }
     
 }
