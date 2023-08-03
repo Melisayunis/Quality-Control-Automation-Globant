@@ -37,15 +37,15 @@ public class ServicioRaices {
     Scanner read = new Scanner(System.in);
     
     public Raices crearRaiz() {
+        Raices equation = new Raices();
         System.out.println("Ingrese los siguientes valores para crear la funcion de 2do grado:"
         + "\n   -> a:");
-        int a = read.nextInt();
+        equation.setA(read.nextInt());
         System.out.println("   -> b:");
-        int b = read.nextInt();
+        equation.setB(read.nextInt());
         System.out.println("   -> c:");
-        int c = read.nextInt();
+        equation.setC(read.nextInt());
         
-        Raices equation = new Raices(a, b, c);
         return equation;
     }
     

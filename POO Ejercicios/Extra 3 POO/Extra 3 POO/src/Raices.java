@@ -16,7 +16,6 @@ delante de -b
 public class Raices {
 
     public static void main(String[] args) {
-        Scanner read = new Scanner(System.in);
         
         ServicioRaices serviceRow = new ServicioRaices();
         Entidad.Raices equation = serviceRow.crearRaiz();
